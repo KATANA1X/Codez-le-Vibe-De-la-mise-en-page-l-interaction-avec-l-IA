@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <!-- === SECTION : Métadonnées, polices Google Fonts et liaison CSS === -->
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Maison AURELIA — Collection Édition Limitée</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,500;0,700;1,400&family=Plus+Jakarta+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- === SECTION : Lueur d'ambiance et particules dorées flottantes === -->
+  <div class="ambient-glow" aria-hidden="true"></div>
+  <canvas id="ambient-particles" aria-hidden="true"></canvas>
+
+  <!-- === SECTION : En-tête de navigation et bascule de thème Clair/Sombre === -->
+  <header class="site-header">
+    <div class="brand">
+      <span class="brand-subtitle">GENÈVE • PARIS</span>
+      <h1 class="brand-logo">AURELIA</h1>
+    </div>
+
+    <div class="header-actions">
+      <div class="cart-indicator" id="cart-indicator" aria-live="polite">
+        <span class="cart-label">Sélection</span>
+        <span class="cart-count" id="cart-count">0</span>
+      </div>
+
+      <button class="theme-toggle" id="theme-toggle" aria-label="Basculer entre le mode clair et le mode sombre" title="Changer d'ambiance">
+        <!-- Icône Soleil (Mode Clair) -->
+        <svg class="icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+          <circle cx="12" cy="12" r="5"></circle>
+          <line x1="12" y1="1" x2="12" y2="3"></line>
+          <line x1="12" y1="21" x2="12" y2="23"></line>
+          <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+          <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+          <line x1="1" y1="12" x2="3" y2="12"></line>
+          <line x1="21" y1="12" x2="23" y2="12"></line>
+          <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+          <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+        </svg>
+        <!-- Icône Lune (Mode Sombre) -->
+        <svg class="icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+        </svg>
+      </button>
+    </div>
+  </header>
+
+  <!-- === SECTION : Introduction éditoriale de la galerie === -->
+  <main class="gallery-container">
+    <section class="hero-intro">
+      <p class="eyebrow">COLLECTION AUTOMNE / HIVER</p>
+      <h2 class="hero-title">L'émotion de la matière, sculptée dans le silence.</h2>
+      <p class="hero-description">Trois pièces d'exception façonnées à la main, où l'ingénierie acoustique rencontre la haute horlogerie contemporaine.</p>
+    </section>
+
+    <!-- === SECTION : Grille de présentation des 3 produits === -->
+    <section class="product-grid" aria-label="Galerie des produits">
+
+      <!-- === SECTION : Carte Produit 1 — Casque Acoustique Solis === -->
+      <article class="product-card" data-tilt style="--delay: 0.1s;">
+        <div class="card-halo" aria-hidden="true"></div>
+        <div class="card-inner">
+          <div class="card-image-wrapper">
+            <span class="product-badge">Édition Numérotée</span>
+            <img 
+              src="https://images.unsplash.com/photo-1505740420928-5e560c06d30e?auto=format&fit=crop&w=900&q=85" 
+              alt="Casque audio minimaliste en aluminium brossé et cuir pleine fleur"
+              loading="lazy"
+            >
+          </div>
+          <div class="card-content">
+            <div class="card-meta">
+              <span class="product-category">Acoustique Pure</span>
+              <span class="product-price">1 290 €</span>
+            </div>
+            <h3 class="product-title">Solis One — Titane</h3>
+            <p class="product-excerpt">Une scène sonore cristalline enveloppée dans un alliage de titane grade 5 et cuir d'agneau souple.</p>
+            <div class="card-actions">
+              <button 
+                class="btn-primary open-modal-btn"
+                data-title="Solis One — Titane"
+                data-category="Acoustique Pure"
+                data-price="1 290 €"
+                data-image="https://images.unsplash.com/photo-1505740420928-5e560c06d30e?auto=format&fit=crop&w=900&q=85"
+                data-story="Conçu pour isoler l'auditeur du tumulte urbain, le Solis One restitue chaque respiration musicale avec une fidélité organique. Ses transducteurs en béryllium pur offrent une chaleur acoustique rare."
+                data-materials="Titane Grade 5 brossé • Cuir d'agneau pleine fleur • Transducteurs 45mm Béryllium"
+              >
+                <span>Découvrir</span>
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+              </button>
+            </div>
+          </div>
+        </div>
+      </article>
+
+      <!-- === SECTION : Carte Produit 2 — Chronographe Astral === -->
+      <article class="product-card" data-tilt style="--delay: 0.25s;">
+        <div class="card-halo" aria-hidden="true"></div>
+        <div class="card-inner">
+          <div class="card-image-wrapper">
+            <span class="product-badge">Calibre Manufacture</span>
+            <img 
+              src="https://images.unsplash.com/photo-1523275335684-37898b6baf30?auto=format&fit=crop&w=900&q=85" 
+              alt="Montre minimaliste au cadran épuré et bracelet en cuir"
+              loading="lazy"
+            >
+          </div>
+          <div class="card-content">
+            <div class="card-meta">
+              <span class="product-category">Haute Horlogerie</span>
+              <span class="product-price">4 850 €</span>
+            </div>
+            <h3 class="product-title">Astral 04 — Or Blanc</h3>
+            <p class="product-excerpt">Un cadran monolithique sans index superflu, animé par un mouvement mécanique à remontage manuel.</p>
+            <div class="card-actions">
+              <button 
+                class="btn-primary open-modal-btn"
+                data-title="Astral 04 — Or Blanc"
+                data-category="Haute Horlogerie"
+                data-price="4 850 €"
+                data-image="https://images.unsplash.com/photo-1523275335684-37898b6baf30?auto=format&fit=crop&w=900&q=85"
+                data-story="Née dans nos ateliers genevois, l'Astral 04 célèbre la lenteur maîtrisée. Son cadran sablé absorbe la lumière pour ne laisser briller que l'essentiel : l'instant présent."
+                data-materials="Boîtier 39mm Or Blanc 18k • Verre Saphir bombé antireflet • Réserve de marche 72h"
+              >
+                <span>Découvrir</span>
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+              </button>
+            </div>
+          </div>
+        </div>
+      </article>
+
+      <!-- === SECTION : Carte Produit 3 — Optique Lumina === -->
+      <article class="product-card" data-tilt style="--delay: 0.4s;">
+        <div class="card-halo" aria-hidden="true"></div>
+        <div class="card-inner">
+          <div class="card-image-wrapper">
+            <span class="product-badge">Série Atelier</span>
+            <img 
+              src="https://images.unsplash.com/photo-1526170375885-4d8ecf77b99f?auto=format&fit=crop&w=900&q=85" 
+              alt="Appareil photo argentique au design intemporel et finitions métalliques"
+              loading="lazy"
+            >
+          </div>
+          <div class="card-content">
+            <div class="card-meta">
+              <span class="product-category">Optique & Lumière</span>
+              <span class="product-price">3 400 €</span>
+            </div>
+            <h3 class="product-title">Lumina M — Édition Noir</h3>
+            <p class="product-excerpt">L'art de capturer l'âme d'un regard grâce à une optique fixe lumineuse et un déclenchement silencieux.</p>
+            <div class="card-actions">
+              <button 
+                class="btn-primary open-modal-btn"
+                data-title="Lumina M — Édition Noir"
+                data-category="Optique & Lumière"
+                data-price="3 400 €"
+                data-image="https://images.unsplash.com/photo-1526170375885-4d8ecf77b99f?auto=format&fit=crop&w=900&q=85"
+                data-story="Chaque déclenchement du Lumina M procure une sensation mécanique inoubliable. Façonné dans un bloc de laiton massif, il se patine avec le temps pour raconter votre propre histoire visuelle."
+                data-materials="Châssis en laiton usiné • Optique 35mm f/1.4 • Gainage cuir texturé main"
+              >
+                <span>Découvrir</span>
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+              </button>
+            </div>
+          </div>
+        </div>
+      </article>
+
+    </section>
+  </main>
+
+  <!-- === SECTION : Modale d'aperçu émotionnel et ajout au panier === -->
+  <div class="modal-backdrop" id="product-modal" aria-hidden="true" role="dialog" aria-modal="true">
+    <div class="modal-panel">
+      <button class="modal-close" id="modal-close" aria-label="Fermer l'aperçu">&times;</button>
+      <div class="modal-grid">
+        <div class="modal-media">
+          <img id="modal-img" src="" alt="Aperçu détaillé du produit">
+        </div>
+        <div class="modal-details">
+          <span class="modal-category" id="modal-category"></span>
+          <h3 class="modal-title" id="modal-title"></h3>
+          <p class="modal-price" id="modal-price"></p>
+          <div class="modal-divider"></div>
+          <p class="modal-story" id="modal-story"></p>
+          <div class="modal-specs">
+            <span class="specs-label">Matières Nobles</span>
+            <p id="modal-materials"></p>
+          </div>
+          <button class="btn-add-cart" id="add-to-cart-btn">
+            <span class="btn-text">Ajouter à ma sélection</span>
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- === SECTION : Liaison avec le script d'interactions JavaScript === -->
+  <script src="script.js"></script>
+</body>
+</html>
