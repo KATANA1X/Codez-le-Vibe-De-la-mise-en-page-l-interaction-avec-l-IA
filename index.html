@@ -4,10 +4,10 @@
   <!-- === SECTION : Métadonnées, polices Google Fonts et liaison CSS === -->
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Maison AURELIA — Collection Édition Limitée</title>
+  <title>BOUTIQUE AKWABA — Créations & Savoir-Faire d'Exception</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,500;0,700;1,400&family=Plus+Jakarta+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,600;0,700;1,500&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
@@ -16,79 +16,117 @@
   <div class="ambient-glow" aria-hidden="true"></div>
   <canvas id="ambient-particles" aria-hidden="true"></canvas>
 
-  <!-- === SECTION : En-tête de navigation et bascule de thème Clair/Sombre === -->
-  <header class="site-header">
-    <div class="brand">
-      <span class="brand-subtitle">GENÈVE • PARIS</span>
-      <h1 class="brand-logo">AURELIA</h1>
-    </div>
+  <!-- === SECTION : Barre de navigation fonctionnelle (Marque, Filtres, Recherche, Panier & Thème) === -->
+  <header class="site-header" id="site-header">
+    <nav class="navbar" aria-label="Navigation principale">
+      <!-- Identité de la boutique -->
+      <a href="#" class="brand" data-filter-reset>
+        <span class="brand-subtitle">ABIDJAN • CÔTE D'IVOIRE</span>
+        <span class="brand-logo">BOUTIQUE AKWABA</span>
+      </a>
 
-    <div class="header-actions">
-      <div class="cart-indicator" id="cart-indicator" aria-live="polite">
-        <span class="cart-label">Sélection</span>
-        <span class="cart-count" id="cart-count">0</span>
+      <!-- Liens de navigation / Filtres de collection -->
+      <ul class="nav-links" id="nav-links">
+        <li><button class="nav-link active" data-filter="all">Collection</button></li>
+        <li><button class="nav-link" data-filter="tissage">Tissage & Mode</button></li>
+        <li><button class="nav-link" data-filter="bijoux">Bijoux & Or</button></li>
+        <li><button class="nav-link" data-filter="art">Art & Décor</button></li>
+      </ul>
+
+      <!-- Actions interactives (Recherche, Panier, Thème, Menu Mobile) -->
+      <div class="header-actions">
+        <!-- Barre de recherche dépliable -->
+        <div class="search-box" id="search-box">
+          <input type="text" id="search-input" placeholder="Rechercher une pièce..." aria-label="Rechercher un produit">
+          <button class="icon-btn" id="search-toggle" aria-label="Ouvrir la recherche" title="Rechercher">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <circle cx="11" cy="11" r="8"></circle>
+              <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+            </svg>
+          </button>
+        </div>
+
+        <!-- Bouton Panier ouvrant le tiroir latéral -->
+        <button class="cart-indicator" id="cart-open-btn" aria-label="Ouvrir mon panier">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"></path>
+            <line x1="3" y1="6" x2="21" y2="6"></line>
+            <path d="M16 10a4 4 0 0 1-8 0"></path>
+          </svg>
+          <span class="cart-count" id="cart-count">0</span>
+        </button>
+
+        <!-- Bascule de thème Clair / Sombre -->
+        <button class="theme-toggle" id="theme-toggle" aria-label="Basculer entre le mode clair et le mode sombre" title="Changer d'ambiance">
+          <svg class="icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="12" cy="12" r="5"></circle>
+            <line x1="12" y1="1" x2="12" y2="3"></line>
+            <line x1="12" y1="21" x2="12" y2="23"></line>
+            <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+            <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+            <line x1="1" y1="12" x2="3" y2="12"></line>
+            <line x1="21" y1="12" x2="23" y2="12"></line>
+            <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+            <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+          </svg>
+          <svg class="icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+          </svg>
+        </button>
+
+        <!-- Bouton menu mobile -->
+        <button class="mobile-menu-btn" id="mobile-menu-btn" aria-label="Menu" aria-expanded="false">
+          <span></span>
+          <span></span>
+          <span></span>
+        </button>
       </div>
-
-      <button class="theme-toggle" id="theme-toggle" aria-label="Basculer entre le mode clair et le mode sombre" title="Changer d'ambiance">
-        <!-- Icône Soleil (Mode Clair) -->
-        <svg class="icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
-          <circle cx="12" cy="12" r="5"></circle>
-          <line x1="12" y1="1" x2="12" y2="3"></line>
-          <line x1="12" y1="21" x2="12" y2="23"></line>
-          <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
-          <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
-          <line x1="1" y1="12" x2="3" y2="12"></line>
-          <line x1="21" y1="12" x2="23" y2="12"></line>
-          <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
-          <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
-        </svg>
-        <!-- Icône Lune (Mode Sombre) -->
-        <svg class="icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
-          <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
-        </svg>
-      </button>
-    </div>
+    </nav>
   </header>
 
-  <!-- === SECTION : Introduction éditoriale de la galerie === -->
+  <!-- === SECTION : Introduction éditoriale de Boutique Akwaba === -->
   <main class="gallery-container">
     <section class="hero-intro">
-      <p class="eyebrow">COLLECTION AUTOMNE / HIVER</p>
-      <h2 class="hero-title">L'émotion de la matière, sculptée dans le silence.</h2>
-      <p class="hero-description">Trois pièces d'exception façonnées à la main, où l'ingénierie acoustique rencontre la haute horlogerie contemporaine.</p>
+      <p class="eyebrow">AKWABA • L'ART DE RECEVOIR & CRÉER</p>
+      <h1 class="hero-title">La chaleur de nos terres, sublimée en pièces uniques.</h1>
+      <p class="hero-description">Bienvenue chez Boutique Akwaba. Découvrez une sélection exclusive de créations artisanales contemporaines où chaque texture raconte une histoire.</p>
     </section>
 
+    <!-- Message affiché si une recherche ne donne aucun résultat -->
+    <p class="empty-search-msg" id="empty-search-msg" hidden>Aucune pièce ne correspond à votre recherche pour le moment.</p>
+
     <!-- === SECTION : Grille de présentation des 3 produits === -->
-    <section class="product-grid" aria-label="Galerie des produits">
+    <section class="product-grid" id="product-grid" aria-label="Galerie des produits">
 
-      <!-- === SECTION : Carte Produit 1 — Casque Acoustique Solis === -->
-      <article class="product-card" data-tilt style="--delay: 0.1s;">
+      <!-- === SECTION : Carte Produit 1 — Étole Kita Royale === -->
+      <article class="product-card" data-tilt data-category="tissage" style="--delay: 0.1s;">
         <div class="card-halo" aria-hidden="true"></div>
         <div class="card-inner">
           <div class="card-image-wrapper">
-            <span class="product-badge">Édition Numérotée</span>
+            <span class="product-badge">Tissage Main</span>
             <img 
-              src="https://images.unsplash.com/photo-1505740420928-5e560c06d30e?auto=format&fit=crop&w=900&q=85" 
-              alt="Casque audio minimaliste en aluminium brossé et cuir pleine fleur"
+              src="https://images.unsplash.com/photo-1606760227091-3dd870d97f1d?auto=format&fit=crop&w=900&q=85" 
+              alt="Étole tissée artisanalement aux motifs géométriques dorés et terracotta"
               loading="lazy"
             >
           </div>
           <div class="card-content">
             <div class="card-meta">
-              <span class="product-category">Acoustique Pure</span>
-              <span class="product-price">1 290 €</span>
+              <span class="product-category">Tissage & Mode</span>
+              <span class="product-price">85 000 FCFA</span>
             </div>
-            <h3 class="product-title">Solis One — Titane</h3>
-            <p class="product-excerpt">Une scène sonore cristalline enveloppée dans un alliage de titane grade 5 et cuir d'agneau souple.</p>
+            <h2 class="product-title">Étole Kita — Soleil d'Or</h2>
+            <p class="product-excerpt">Tissée fil à fil sur métier traditionnel en coton biologique et soie lumineuse aux reflets safran.</p>
             <div class="card-actions">
               <button 
                 class="btn-primary open-modal-btn"
-                data-title="Solis One — Titane"
-                data-category="Acoustique Pure"
-                data-price="1 290 €"
-                data-image="https://images.unsplash.com/photo-1505740420928-5e560c06d30e?auto=format&fit=crop&w=900&q=85"
-                data-story="Conçu pour isoler l'auditeur du tumulte urbain, le Solis One restitue chaque respiration musicale avec une fidélité organique. Ses transducteurs en béryllium pur offrent une chaleur acoustique rare."
-                data-materials="Titane Grade 5 brossé • Cuir d'agneau pleine fleur • Transducteurs 45mm Béryllium"
+                data-title="Étole Kita — Soleil d'Or"
+                data-category="Tissage & Mode"
+                data-price="85 000 FCFA"
+                data-price-num="85000"
+                data-image="https://images.unsplash.com/photo-1606760227091-3dd870d97f1d?auto=format&fit=crop&w=900&q=85"
+                data-story="Chaque bande de l'Étole Soleil d'Or demande plus de trois semaines de tissage patient. Ses motifs géométriques célèbrent l'hospitalité légendaire Akwaba et captent la lumière naturelle avec noblesse."
+                data-materials="Coton pur filé main • Fils de soie dorée • Teintures végétales naturelles"
               >
                 <span>Découvrir</span>
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
@@ -98,34 +136,35 @@
         </div>
       </article>
 
-      <!-- === SECTION : Carte Produit 2 — Chronographe Astral === -->
-      <article class="product-card" data-tilt style="--delay: 0.25s;">
+      <!-- === SECTION : Carte Produit 2 — Parure Baoulé Or === -->
+      <article class="product-card" data-tilt data-category="bijoux" style="--delay: 0.25s;">
         <div class="card-halo" aria-hidden="true"></div>
         <div class="card-inner">
           <div class="card-image-wrapper">
-            <span class="product-badge">Calibre Manufacture</span>
+            <span class="product-badge">Cire Perdue</span>
             <img 
-              src="https://images.unsplash.com/photo-1523275335684-37898b6baf30?auto=format&fit=crop&w=900&q=85" 
-              alt="Montre minimaliste au cadran épuré et bracelet en cuir"
+              src="https://images.unsplash.com/photo-1515562141207-7a88fb7ce338?auto=format&fit=crop&w=900&q=85" 
+              alt="Parure de bijoux dorés sculptés à la main"
               loading="lazy"
             >
           </div>
           <div class="card-content">
             <div class="card-meta">
-              <span class="product-category">Haute Horlogerie</span>
-              <span class="product-price">4 850 €</span>
+              <span class="product-category">Bijoux & Or</span>
+              <span class="product-price">145 000 FCFA</span>
             </div>
-            <h3 class="product-title">Astral 04 — Or Blanc</h3>
-            <p class="product-excerpt">Un cadran monolithique sans index superflu, animé par un mouvement mécanique à remontage manuel.</p>
+            <h2 class="product-title">Collier Lagune — Éclat 18k</h2>
+            <p class="product-excerpt">Sculpté selon la technique ancestrale de la cire perdue, alliant lignes architecturales et douceur organique.</p>
             <div class="card-actions">
               <button 
                 class="btn-primary open-modal-btn"
-                data-title="Astral 04 — Or Blanc"
-                data-category="Haute Horlogerie"
-                data-price="4 850 €"
-                data-image="https://images.unsplash.com/photo-1523275335684-37898b6baf30?auto=format&fit=crop&w=900&q=85"
-                data-story="Née dans nos ateliers genevois, l'Astral 04 célèbre la lenteur maîtrisée. Son cadran sablé absorbe la lumière pour ne laisser briller que l'essentiel : l'instant présent."
-                data-materials="Boîtier 39mm Or Blanc 18k • Verre Saphir bombé antireflet • Réserve de marche 72h"
+                data-title="Collier Lagune — Éclat 18k"
+                data-category="Bijoux & Or"
+                data-price="145 000 FCFA"
+                data-price-num="145000"
+                data-image="https://images.unsplash.com/photo-1515562141207-7a88fb7ce338?auto=format&fit=crop&w=900&q=85"
+                data-story="Inspiré par les reflets du soleil couchant sur la lagune Ébrié, le Collier Lagune épouse le port de tête avec une légèreté aérienne. Chaque maillon est poli à la main dans notre atelier d'Abidjan."
+                data-materials="Bronze massif doré à l'or fin 18 carats • Fermoir signature gravé"
               >
                 <span>Découvrir</span>
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
@@ -135,34 +174,35 @@
         </div>
       </article>
 
-      <!-- === SECTION : Carte Produit 3 — Optique Lumina === -->
-      <article class="product-card" data-tilt style="--delay: 0.4s;">
+      <!-- === SECTION : Carte Produit 3 — Amphore Terracotta === -->
+      <article class="product-card" data-tilt data-category="art" style="--delay: 0.4s;">
         <div class="card-halo" aria-hidden="true"></div>
         <div class="card-inner">
           <div class="card-image-wrapper">
-            <span class="product-badge">Série Atelier</span>
+            <span class="product-badge">Pièce Signée</span>
             <img 
-              src="https://images.unsplash.com/photo-1526170375885-4d8ecf77b99f?auto=format&fit=crop&w=900&q=85" 
-              alt="Appareil photo argentique au design intemporel et finitions métalliques"
+              src="https://images.unsplash.com/photo-1610701596007-11502861dcfa?auto=format&fit=crop&w=900&q=85" 
+              alt="Céramique artisanale en terre cuite sculptée à la main"
               loading="lazy"
             >
           </div>
           <div class="card-content">
             <div class="card-meta">
-              <span class="product-category">Optique & Lumière</span>
-              <span class="product-price">3 400 €</span>
+              <span class="product-category">Art & Décor</span>
+              <span class="product-price">65 000 FCFA</span>
             </div>
-            <h3 class="product-title">Lumina M — Édition Noir</h3>
-            <p class="product-excerpt">L'art de capturer l'âme d'un regard grâce à une optique fixe lumineuse et un déclenchement silencieux.</p>
+            <h2 class="product-title">Amphore Katiola — Terre Brute</h2>
+            <p class="product-excerpt">Façonnée sans tour par les maîtres potières, cette pièce sculpturale apporte une présence apaisante à votre intérieur.</p>
             <div class="card-actions">
               <button 
                 class="btn-primary open-modal-btn"
-                data-title="Lumina M — Édition Noir"
-                data-category="Optique & Lumière"
-                data-price="3 400 €"
-                data-image="https://images.unsplash.com/photo-1526170375885-4d8ecf77b99f?auto=format&fit=crop&w=900&q=85"
-                data-story="Chaque déclenchement du Lumina M procure une sensation mécanique inoubliable. Façonné dans un bloc de laiton massif, il se patine avec le temps pour raconter votre propre histoire visuelle."
-                data-materials="Châssis en laiton usiné • Optique 35mm f/1.4 • Gainage cuir texturé main"
+                data-title="Amphore Katiola — Terre Brute"
+                data-category="Art & Décor"
+                data-price="65 000 FCFA"
+                data-price-num="65000"
+                data-image="https://images.unsplash.com/photo-1610701596007-11502861dcfa?auto=format&fit=crop&w=900&q=85"
+                data-story="Issue d'un savoir-faire transmis de mère en fille à Katiola, cette amphore est modelée à la main puis cuite au feu de bois, offrant à chaque exemplaire des nuances minérales impossibles à reproduire."
+                data-materials="Argile rouge naturelle • Patine minérale mate • Pièce numérotée"
               >
                 <span>Découvrir</span>
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
@@ -190,7 +230,7 @@
           <div class="modal-divider"></div>
           <p class="modal-story" id="modal-story"></p>
           <div class="modal-specs">
-            <span class="specs-label">Matières Nobles</span>
+            <span class="specs-label">Matières & Savoir-Faire</span>
             <p id="modal-materials"></p>
           </div>
           <button class="btn-add-cart" id="add-to-cart-btn">
@@ -199,6 +239,26 @@
         </div>
       </div>
     </div>
+  </div>
+
+  <!-- === SECTION : Tiroir latéral du Panier (Cart Drawer) === -->
+  <div class="drawer-backdrop" id="cart-drawer-backdrop" aria-hidden="true">
+    <aside class="cart-drawer" id="cart-drawer" aria-label="Votre panier Boutique Akwaba">
+      <div class="drawer-header">
+        <h3>Votre Sélection Akwaba</h3>
+        <button class="modal-close drawer-close" id="cart-close-btn" aria-label="Fermer le panier">&times;</button>
+      </div>
+      <div class="drawer-body" id="cart-items-container">
+        <p class="empty-cart-msg">Votre sélection est vide pour l'instant.</p>
+      </div>
+      <div class="drawer-footer">
+        <div class="drawer-total">
+          <span>Total estimé</span>
+          <strong id="cart-total-price">0 FCFA</strong>
+        </div>
+        <button class="btn-add-cart" id="checkout-btn">Commander ma sélection</button>
+      </div>
+    </aside>
   </div>
 
   <!-- === SECTION : Liaison avec le script d'interactions JavaScript === -->
